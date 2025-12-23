@@ -12,10 +12,10 @@ p1 = 0
 p2 = 0
 
 
-def sum_of_numbers(str):
+def sum_of_numbers(line):
     sum = 0
     new_str = ""
-    for c in str:
+    for c in line:
         new_str += c if c.isdigit() or c == "-" else " "
 
     numbers = new_str.split()
