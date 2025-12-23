@@ -6,9 +6,9 @@ import numpy as np
 TEST = False
 
 day = Path(__file__).stem
-input_file = f'{day}.test.txt' if TEST else f'{day}.txt'
+input_file = f"{day}.test.txt" if TEST else f"{day}.txt"
 input_str = open(input_file).read().rstrip()
-lines = input_str.split('\n')
+lines = input_str.split("\n")
 
 p1 = 0
 p2 = 0

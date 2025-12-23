@@ -1,9 +1,9 @@
 from pathlib import Path
 
 day = Path(__file__).stem
-input_file = f'{day}.txt'
+input_file = f"{day}.txt"
 input_str = open(input_file).read()
-lines = input_str.split('\n')
+lines = input_str.split("\n")
 
 p1 = 0
 p2 = 0
@@ -19,19 +19,19 @@ p2_houses[santa_loc] = 2
 
 santa_turn = True
 for c in input_str:
-    if c == '^':
+    if c == "^":
         loc = (loc[0] + 1, loc[1])
         if santa_turn:
             santa_loc = (santa_loc[0] + 1, santa_loc[1])
         else:
             robo_loc = (robo_loc[0] + 1, robo_loc[1])
-    elif c == 'v':
+    elif c == "v":
         loc = (loc[0] - 1, loc[1])
         if santa_turn:
             santa_loc = (santa_loc[0] - 1, santa_loc[1])
         else:
             robo_loc = (robo_loc[0] - 1, robo_loc[1])
-    elif c == '>':
+    elif c == ">":
         loc = (loc[0], loc[1] + 1)
         if santa_turn:
             santa_loc = (santa_loc[0], santa_loc[1] + 1)

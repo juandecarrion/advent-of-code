@@ -1,9 +1,9 @@
 from pathlib import Path
 
 day = Path(__file__).stem
-input_file = f'{day}.txt'
+input_file = f"{day}.txt"
 input_str = open(input_file).read()
-lines = input_str.split('\n')
+lines = input_str.split("\n")
 
 p1 = 0
 p2 = 0
@@ -21,9 +21,9 @@ for i in range(1000):
 for l in lines:
     if not l:
         continue
-    if l.startswith('turn'):
-        l = l[len('turn '):]
-    l = l.replace(',', ' ')
+    if l.startswith("turn"):
+        l = l[len("turn ") :]
+    l = l.replace(",", " ")
     a, b, c, d, e, f = l.split()
     b = int(b)
     c = int(c)
@@ -46,10 +46,10 @@ for l in lines:
 
     for x in range(min_x, max_x + 1):
         for y in range(min_y, max_y + 1):
-            if a == 'toggle':
+            if a == "toggle":
                 grid[(y, x)] = not grid[(y, x)]
                 grid2[(y, x)] += 2
-            elif a == 'on':
+            elif a == "on":
                 grid[(y, x)] = True
                 grid2[(y, x)] += 1
             else:
