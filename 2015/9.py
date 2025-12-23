@@ -1,6 +1,7 @@
 import itertools
 import sys
 from pathlib import Path
+
 import numpy as np
 
 TEST = False
@@ -44,8 +45,8 @@ for way in possible_ways:
     way_dist = 0
     for previous, current in zip(way, way[1:]):
         way_dist += dist_a[previous][current]
-    p1 = min(way_dist, p1)
-    p2 = max(way_dist, p2)
+    p1 = int(min(way_dist, p1))
+    p2 = int(max(way_dist, p2))
 
 print(p1)
 print(p2)
