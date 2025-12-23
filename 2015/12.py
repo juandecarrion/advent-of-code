@@ -1,4 +1,4 @@
-import re
+import json
 from pathlib import Path
 
 TEST = False
@@ -33,14 +33,16 @@ assert sum_of_numbers('[-1,{"a":1}]') == 0
 assert sum_of_numbers('[]') == 0
 assert sum_of_numbers('{}') == 0
 
-for line in lines:
-    p1 += sum_of_numbers(line)
+p1 = sum_of_numbers(lines[0])
 
-# \{[^{}]+\:\"red\"[^{}]+\}
-to_remove = re.compile(r"\{[^{}]+\:\"red\"[^{}]+\}")
 
-for line in lines:
-    p2 += sum_of_numbers(to_remove.sub('', line))
+def remove_red(obj):
+    return {} if 'red' in obj.values() else obj
+
+
+without_red = str(json.loads(lines[0], object_hook=remove_red))
+
+p2 = sum_of_numbers(without_red)
 
 print(p1)
 print(p2)
