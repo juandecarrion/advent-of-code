@@ -5,6 +5,7 @@ description = "Advent of Code"
 requires-python = ">=3.14"
 dependencies = [
     "numpy>=2.4.0",
+    "pytest>=9.0.2",
     "scipy>=1.16.3",
     "scipy-stubs~=1.16.3",
     "z3-solver>=4.15.4.0",
