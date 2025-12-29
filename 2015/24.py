@@ -26,7 +26,7 @@ def solve(no_of_groups):
     total_weight = sum(packages)
     weight_per_group = total_weight // no_of_groups
 
-    ITERATION_FACTOR = 2**20
+    ITERATION_FACTOR = 2**19
     options = set()
     for i in range(1, len(packages)):
         for _ in range(ITERATION_FACTOR):
