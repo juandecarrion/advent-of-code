@@ -50,7 +50,6 @@ p1 = sys.maxsize
 # p1 = 29728298883
 # p1 = 10542541903
 # p1 = 10439961859
-# p1 = 10439961859
 for option in options:
     entanglement = reduce(mul, option)
     if entanglement <= p1:
