@@ -1,32 +1,28 @@
+import concurrent.futures
 import random
 import sys
 from functools import reduce
+from multiprocessing import freeze_support
 from operator import mul
 from pathlib import Path
 
-TEST = False
-print(f"{TEST=}")
-
-day = Path(__file__).stem
-input_file = f"{day}.test.txt" if TEST else f"{day}.txt"
-input_str = open(input_file).read().rstrip()
-lines = input_str.split("\n")
-
-
-p1 = 0
-p2 = 0
-
-
-packages = []
-for line in lines:
-    packages.append(int(line))
-
 
 def solve(no_of_groups):
+    TEST = False
+
+    day = Path(__file__).stem
+    input_file = f"{day}.test.txt" if TEST else f"{day}.txt"
+    input_str = open(input_file).read().rstrip()
+    lines = input_str.split("\n")
+
+    packages = []
+    for line in lines:
+        packages.append(int(line))
+
     total_weight = sum(packages)
     weight_per_group = total_weight // no_of_groups
 
-    ITERATION_FACTOR = 2**19
+    ITERATION_FACTOR = 2**16
     options = set()
     for i in range(1, len(packages)):
         for _ in range(ITERATION_FACTOR):
@@ -84,9 +80,25 @@ def solve(no_of_groups):
     return result
 
 
-p1 = solve(no_of_groups=3)
-p2 = solve(no_of_groups=4)
+if __name__ == "__main__":
+    freeze_support()
+    with concurrent.futures.ProcessPoolExecutor() as executor:
+        futures = {executor.submit(solve, 3) for i in range(8)}
+        p1_results = []
+        for future in concurrent.futures.as_completed(futures):
+            try:
+                result = future.result()  # Retrieve result or raise an exception
+                p1_results.append(result)
+            except Exception as e:
+                print(f"Task raised an exception: {e}")
+        print(min(p1_results))
 
-print(p1)
-print(p2)
-pass
+        futures = {executor.submit(solve, 4) for i in range(8)}
+        p2_results = []
+        for future in concurrent.futures.as_completed(futures):
+            try:
+                result = future.result()  # Retrieve result or raise an exception
+                p2_results.append(result)
+            except Exception as e:
+                print(f"Task raised an exception: {e}")
+        print(min(p2_results))
