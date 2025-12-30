@@ -1,7 +1,7 @@
 import re
 from pathlib import Path
 
-TEST = True
+TEST = False
 print(f"{TEST=}")
 
 day = Path(__file__).stem
@@ -15,21 +15,6 @@ p2 = 0
 
 code_row, code_column = re.findall(r"\d+", lines[0])
 code_pos = (int(code_row), int(code_column))
-
-input_str = open("25.manual.txt").read().rstrip()
-lines = input_str.split("\n")
-
-
-offset = 2
-codes = []
-for i_with_offset in range(offset, len(lines)):
-    codes.append([])
-    _, line = lines[i_with_offset].split("|")
-    i = i_with_offset - offset
-    for j, code in enumerate(line.split()):
-        codes[-1].append(int(code))
-
-pass
 
 
 def get_next_pos(pos):
@@ -96,7 +81,7 @@ if TEST:
 
 
 pos = (1, 1)
-value = codes[0][0]
+value = 20151125
 while True:
     pos = get_next_pos(pos)
     value = get_next_value(value)
